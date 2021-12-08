@@ -2,7 +2,7 @@ package com.eleven.icode.shardingsphere.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 
-@TableName(value = "user")
+@TableName(value = "t_user")
 public class User {
 
     private Long userId;

@@ -43,7 +43,7 @@ public class ShardingJDBCTest {
         //select * from course
         QueryWrapper<Course> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("cid");
-        wrapper.eq("cid", 553684818806706177L);
+        wrapper.eq("cid", 675302121926561792L);
 //        wrapper.in()
         List<Course> courses = courseMapper.selectList(wrapper);
         courses.forEach(course -> System.out.println(course));
@@ -53,7 +53,18 @@ public class ShardingJDBCTest {
     public void queryOrderRange() {
         //select * from course
         QueryWrapper<Course> wrapper = new QueryWrapper<>();
-        wrapper.between("cid", 553684818806706177L, 553684819184193537L);
+        wrapper.between("cid", 675302121926561792L, 675302123751084032L);
+//        wrapper.in()
+        List<Course> courses = courseMapper.selectList(wrapper);
+        courses.forEach(course -> System.out.println(course));
+    }
+
+
+    @Test
+    public void queryOrderIn() {
+        //select * from course
+        QueryWrapper<Course> wrapper = new QueryWrapper<>();
+        wrapper.in("cid", 675302121926561792L, 675302123751084032L);
 //        wrapper.in()
         List<Course> courses = courseMapper.selectList(wrapper);
         courses.forEach(course -> System.out.println(course));
@@ -80,15 +91,15 @@ public class ShardingJDBCTest {
 
     @Test
     public void addDict() {
-        Dict d1 = new Dict();
-        d1.setUstatus("1");
-        d1.setUvalue("正常");
-        dictMapper.insert(d1);
-
-        Dict d2 = new Dict();
-        d2.setUstatus("0");
-        d2.setUvalue("不正常");
-        dictMapper.insert(d2);
+//        Dict d1 = new Dict();
+//        d1.setUstatus("1");
+//        d1.setUvalue("正常");
+//        dictMapper.insert(d1);
+//
+//        Dict d2 = new Dict();
+//        d2.setUstatus("0");
+//        d2.setUvalue("不正常");
+//        dictMapper.insert(d2);
 
         for (int i = 0; i < 10; i++) {
             User user = new User();

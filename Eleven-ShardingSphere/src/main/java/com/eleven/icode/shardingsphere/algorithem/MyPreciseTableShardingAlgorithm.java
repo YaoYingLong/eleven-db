@@ -10,8 +10,8 @@ public class MyPreciseTableShardingAlgorithm implements PreciseShardingAlgorithm
     //select * from course where cid = ? or cid in (?,?)
     @Override
     public String doSharding(Collection<String> availableTargetNames, PreciseShardingValue<Long> shardingValue) {
-        String logicTableName = shardingValue.getLogicTableName();
-        String cid = shardingValue.getColumnName();
+        String logicTableName = shardingValue.getLogicTableName(); // 获取逻辑表
+        String cid = shardingValue.getColumnName(); // 获取分片键
         Long cidValue = shardingValue.getValue();
         //实现 course_$->{cid%2+1)
         BigInteger shardingValueB = BigInteger.valueOf(cidValue);

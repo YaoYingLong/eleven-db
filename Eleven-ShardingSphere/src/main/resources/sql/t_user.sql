@@ -1,4 +1,4 @@
---在userdb中创建
+-- 在userdb中创建
 CREATE TABLE `t_user`
 (
     `user_id`  bigint(0) PRIMARY KEY NOT NULL,

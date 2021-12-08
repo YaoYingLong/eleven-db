@@ -14,20 +14,14 @@ public class MyComplexTableShardingAlgorithm implements ComplexKeysShardingAlgor
     public Collection<String> doSharding(Collection<String> availableTargetNames, ComplexKeysShardingValue<Long> shardingValue) {
         Range<Long> cidRange = shardingValue.getColumnNameAndRangeValuesMap().get("cid");
         Collection<Long> userIdCol = shardingValue.getColumnNameAndShardingValuesMap().get("user_id");
-
         Long upperVal = cidRange.upperEndpoint();
         Long lowerVal = cidRange.lowerEndpoint();
-
         List<String> res = new ArrayList<>();
-
-        for (Long userId : userIdCol) {
-            //course_{userID%2+1}
+        for (Long userId : userIdCol) {// course_{userID%2+1}
             BigInteger userIdB = BigInteger.valueOf(userId);
             BigInteger target = userIdB.mod(new BigInteger("2")).add(new BigInteger("1"));
-
             res.add(shardingValue.getLogicTableName() + "_" + target);
         }
-
         return res;
     }
 }
